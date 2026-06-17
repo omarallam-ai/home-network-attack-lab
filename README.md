@@ -68,11 +68,10 @@ home-network-attack-lab/
 │   │   └── analysis-notes.md          ← traffic analysis observations
 │   └── wifi-analysis/
 │       └── cracking-methodology.md    ← password strength analysis
-├── detection/
-│   ├── README.md
-│   └── arp-spoof-detector.py          ← live ARP spoofing detection script
-└── setup/
-    └── lab-environment.md
+└── detection/
+    ├── README.md
+    └── arp-spoof-detector.py          ← live ARP spoofing detection script
+
 ```
 
 ---
