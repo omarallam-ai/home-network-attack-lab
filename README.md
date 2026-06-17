@@ -10,12 +10,11 @@
 
 This repository documents network attacks I performed against my own home network
 as part of building hands-on offensive security knowledge. Every technique studied
-here is paired with detection guidance and defensive countermeasures — because
-understanding how attacks work is the foundation of effective defense.
+here is paired with detection guidance, defensive countermeasures, and where relevant,
+a detection script written after the fact.
 
 The lab follows a consistent structure: **how it works → what the attacker gains →
-how to detect it → how to stop it.** The repo is designed to grow; new attacks are
-added as a numbered entry following the same template.
+how to detect it → how to stop it.**
 
 > **Note:** No screenshots are included. All experiments were conducted on personally
 > owned devices on a private network. Raw captures and sensitive artifacts are excluded
@@ -34,13 +33,13 @@ Knowing how WPA2 handshakes are cracked makes enforcing password policy feel urg
 
 ## Environment
 
-| Component        | Detail                                      |
-|-----------------|---------------------------------------------|
-| Network type     | Home LAN (private, all devices owned)       |
-| Attacker machine | Kali Linux                                  |
-| WiFi adapter     | USB adapter with monitor mode / injection support |
-| Targets          | Personal devices on same subnet             |
-| Captures         | Excluded from repo for privacy              |
+| Component | Detail |
+|-----------|--------|
+| Network type | Home LAN (private, all devices owned) |
+| Attacker machine | Kali Linux |
+| WiFi adapter | USB adapter with monitor mode / injection support |
+| Targets | Personal devices on same subnet |
+| Captures | Excluded from repo for privacy |
 
 ---
 
@@ -48,7 +47,7 @@ Knowing how WPA2 handshakes are cracked makes enforcing password policy feel urg
 
 | # | Attack | Category | Tools | Status |
 |---|--------|----------|-------|--------|
-| 01 | [ARP Spoofing / MITM](attacks/01-arp-spoofing.md) | LAN / Layer 2 | Ettercap | ✅ Completed |
+| 01 | [ARP Spoofing / MITM](attacks/01-arp-spoofing.md) | LAN / Layer 2 | Ettercap, Wireshark, apackets.com | ✅ Completed |
 | 02 | [WiFi Handshake Capture & Cracking](attacks/02-wifi-handshake-cracking.md) | Wireless | airmon-ng, aircrack-ng, hashcat | ✅ Completed |
 | 03 | [Evil Twin / Rogue AP](attacks/03-evil-twin-rogue-ap.md) | Wireless | Fluxion (studied) | 🔬 Partial — single adapter |
 
@@ -60,21 +59,32 @@ Knowing how WPA2 handshakes are cracked makes enforcing password policy feel urg
 home-network-attack-lab/
 ├── README.md
 ├── disclaimer.md
+├── skills-and-learning.md
 ├── attacks/
 │   ├── 01-arp-spoofing.md
 │   ├── 02-wifi-handshake-cracking.md
-│   └── 03-evil-twin-rogue-ap.md
+│   ├── 03-evil-twin-rogue-ap.md
+│   ├── arp-analysis/
+│   │   └── analysis-notes.md          ← traffic analysis observations
+│   └── wifi-analysis/
+│       └── cracking-methodology.md    ← password strength analysis
+├── detection/
+│   ├── README.md
+│   └── arp-spoof-detector.py          ← live ARP spoofing detection script
 └── setup/
     └── lab-environment.md
 ```
+
+---
 
 ## Skills Demonstrated
 
 - Active reconnaissance and LAN-level exploitation (ARP, MITM)
 - Wireless security assessment (monitor mode, handshake capture, offline cracking)
-- Threat modeling from an attacker's perspective
-- Writing detection logic and hardening guidance from first-hand attack knowledge
-- Structured documentation of security research
+- Traffic analysis and IOC extraction from captured network data
+- Threat modelling from an attacker's perspective
+- Writing detection logic and tooling from first-hand attack knowledge
+- Structured documentation of security research in SOC analyst style
 
 ---
 
